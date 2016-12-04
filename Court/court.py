@@ -11,9 +11,9 @@
  """
 
 import sys
+import os
 
 import numpy as np
-
 
 class Court():
     def __init__(self, width, height):
@@ -40,7 +40,11 @@ class Court():
             if len(court_row) > 0:
                 self.court.append(court_row)
 
+    def cleanScreen(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
+
     def printCourt(self):
+        self.cleanScreen()
         # Prepare a string that represents the court
         screen = "\n".join(''.join(line) for line in self.court)
         # Print the court
