@@ -1,3 +1,15 @@
+"""
+/*****************************************************
+ *
+ *              Gabor Vecsei
+ * Email:       vecseigabor.x@gmail.com
+ * Blog:        https://gaborvecsei.wordpress.com/
+ * LinkedIn:    www.linkedin.com/in/vecsei-gabor
+ * Github:      https://github.com/gaborvecsei
+ *
+ *****************************************************
+ """
+
 # Windows OS specific:
 import msvcrt
 import sys

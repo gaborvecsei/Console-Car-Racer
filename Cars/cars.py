@@ -1,3 +1,15 @@
+"""
+/*****************************************************
+ *
+ *              Gabor Vecsei
+ * Email:       vecseigabor.x@gmail.com
+ * Blog:        https://gaborvecsei.wordpress.com/
+ * LinkedIn:    www.linkedin.com/in/vecsei-gabor
+ * Github:      https://github.com/gaborvecsei
+ *
+ *****************************************************
+ """
+
 class Car(object):
     def __init__(self, startPosition=(0, 0), character='#', direction=0):
         # Character that represents the car in the court
