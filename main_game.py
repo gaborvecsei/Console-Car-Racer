@@ -51,7 +51,7 @@ def createNewEnemy(minSpeed, maxSpeed, court):
     return newEnemy
 
 
-def main(playerName, highScore = 0):
+def main(playerName, highScore=0):
     court = Court(COURT_WIDTH, COURT_HEIGHT)
 
     player = Player()
@@ -60,8 +60,9 @@ def main(playerName, highScore = 0):
 
     enemy1 = createNewEnemy(5, 10, court)
     enemy2 = createNewEnemy(5, 10, court)
+    enemy3 = createNewEnemy(5, 10, court)
 
-    enemies = [enemy1, enemy2]
+    enemies = [enemy1, enemy2, enemy3]
 
     time_delta = 1. / 33
 
