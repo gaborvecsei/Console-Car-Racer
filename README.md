@@ -13,6 +13,7 @@ Simple car racing game which you can play in your console!
 ## How to play
 
 **Player**: *o*
+
 **Other cars (enemies)**: *x*
 
 Try to get out of the way from the other cars and collect as many points as you can!
