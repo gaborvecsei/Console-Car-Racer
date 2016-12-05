@@ -73,12 +73,16 @@ def main(playerName, highScore=0):
     :param playerName: Name of the player who is currently playing
     :param highScore: Current high scrore before the game
     """
+
+    # Create Court
     court = Court(COURT_WIDTH, COURT_HEIGHT)
 
+    # Create a player
     player = Player()
     rndXPosPlayer = court.generateRandomXPos()
     player.setPosition((rndXPosPlayer, PLAYER_Y_POS))
 
+    # Create new enemies
     enemy1 = createNewEnemy(5, 10, court)
     enemy2 = createNewEnemy(5, 10, court)
     enemy3 = createNewEnemy(5, 10, court)
@@ -97,6 +101,7 @@ def main(playerName, highScore=0):
             if keyPressed.decode() == 'q':
                 break
 
+        # Move the enemies & detect collision & increase difficulty
         for enemy in enemies:
             enemy.moveOneStep()
             if enemy.detectWallCollision(court):
@@ -122,7 +127,7 @@ def main(playerName, highScore=0):
                     newEnemy = createNewEnemy(5, 20, court)
                     enemies.append(newEnemy)
 
-        # Detect if the player collided with an enemy
+        # Detect if the player collided with an enemy or with a wall
         if player.detectCarCollision(enemies) or player.detectWallCollision(court):
             print "\nCollision!"
             break
@@ -132,8 +137,9 @@ def main(playerName, highScore=0):
         court.putEnemiesOnCourt(enemies)
         # Show the court in the console
         court.printCourt()
-        print "\nPlayerScore: {0}".format(player.getScore())
+        print "\nPlayer Score: {0}".format(player.getScore())
 
+    # Save score and check if high score reached
     newRow = ','.join([playerName, str(player.getScore()), str(datetime.now())])
     print newRow
     if player.getScore() > highScore:
