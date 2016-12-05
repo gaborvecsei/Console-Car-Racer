@@ -19,9 +19,9 @@ Try to get out of the way from the other cars and collect as many points as you 
 
 ## Gameplay
 
-<img  height=400 src="https://github.com/gaborvecsei/pyTRON/blob/master/GamePlay.gif" />
+<img  height=400 src="https://github.com/gaborvecsei/Console-Car-Racer/blob/master/data/gameplay.gif" />
 
- ## About
+## About
 
 Gábor Vecsei
 
