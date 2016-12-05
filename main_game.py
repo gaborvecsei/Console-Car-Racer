@@ -92,7 +92,7 @@ def main(playerName, highScore=0):
         # Detect user input
         keyPressed = userKeyboardInput()
         if keyPressed is not None:
-            player.controllPlayer(keyPressed)
+            player.controlPlayer(keyPressed.decode())
             # We can quit from the game
             if keyPressed.decode() == 'q':
                 break

@@ -10,6 +10,7 @@
  *****************************************************
  """
 
+
 class Car(object):
     def __init__(self, startPosition=(0, 0), character='#', direction=0):
         # Character that represents the car in the court
@@ -55,13 +56,13 @@ class Player(Car):
         elif self.getDirection() == 1:
             self.setPosition((self.position[0] + 1, self.position[1]))
 
-    def controllPlayer(self, keyboardInput):
+    def controlPlayer(self, keyboardInput):
         # Left
-        if keyboardInput.decode() == 'a':
+        if keyboardInput == 'a':
             self.changeDirection(0)
             self.move()
         # Right
-        elif keyboardInput.decode() == 'd':
+        elif keyboardInput == 'd':
             self.changeDirection(1)
             self.move()
 
@@ -72,12 +73,12 @@ class Player(Car):
         return False
 
     def detectWallCollision(self, court):
-        x,y = self.position
-        if x >= court.getWidthHeight()[0]-1:
+        x, y = self.position
+        if x >= court.getWidthHeight()[0] - 1:
             return True
         elif x < 1:
             return True
-        elif y >= court.getWidthHeight()[1]-1:
+        elif y >= court.getWidthHeight()[1] - 1:
             return True
         elif y < 1:
             return True
