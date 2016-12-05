@@ -10,7 +10,7 @@
  *****************************************************
  """
 
-# Windows OS specific:
+# Windows OS specific!
 import msvcrt
 import os
 import time
@@ -31,11 +31,19 @@ SCORES_PATH = "data/scores.csv"
 
 
 def cleanScreen():
+    """
+    This method name speaks for itself
+    btw...it is cross platform (Windows, Linux)
+    """
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
-# Asks whether a key has been acquired
 def userKeyboardInput():
+    """
+    Reads the input from the user
+    :return: Keycode or None if there was no hit
+    """
+
     x = msvcrt.kbhit()
     if x:
         ret = msvcrt.getch()
@@ -45,13 +53,26 @@ def userKeyboardInput():
 
 
 def createNewEnemy(minSpeed, maxSpeed, court):
-    newEnemy = EnemyCar(np.random.randint(2, 15))
+    """
+    Creates a new enemy
+    :param minSpeed: Minimum speed
+    :param maxSpeed: Max speed
+    :param court: Court where we play
+    :return: Enemy car object
+    """
+
+    newEnemy = EnemyCar(np.random.randint(minSpeed, maxSpeed))
     rndXPosNewEnemy = court.generateRandomXPos()
     newEnemy.setPosition((rndXPosNewEnemy, ENEMY_START_Y_POS))
     return newEnemy
 
 
 def main(playerName, highScore=0):
+    """
+    Main loop of the game
+    :param playerName: Name of the player who is currently playing
+    :param highScore: Current high scrore before the game
+    """
     court = Court(COURT_WIDTH, COURT_HEIGHT)
 
     player = Player()
@@ -72,6 +93,9 @@ def main(playerName, highScore=0):
         keyPressed = userKeyboardInput()
         if keyPressed is not None:
             player.controllPlayer(keyPressed)
+            # We can quit from the game
+            if keyPressed.decode() == 'q':
+                break
 
         for enemy in enemies:
             enemy.moveOneStep()
@@ -112,14 +136,25 @@ def main(playerName, highScore=0):
 
     newRow = ','.join([playerName, str(player.getScore()), str(datetime.now())])
     print newRow
-    with open(SCORES_PATH, "a") as f:
-        f.write("\n" + newRow)
-
     if player.getScore() > highScore:
         print "You beat the high score!"
 
+    # We can save our score
+    saveIt = raw_input("Would you like to save your score? (y/n)")
+    if saveIt == 'y' or saveIt == 'Y':
+        with open(SCORES_PATH, "a") as f:
+            f.write("\n" + newRow)
+        print "Your score is saved!"
+    else:
+        print "Your score is not saved!"
+
 
 def showHighScore():
+    """
+    Show the high score which is stored in the "data/scores.csv" file
+    :return: high score
+    """
+
     scoresTable = pd.read_csv(SCORES_PATH, header=0)
 
     names = scoresTable["name"].values
@@ -127,9 +162,7 @@ def showHighScore():
     times = scoresTable["time"].values
 
     if len(names) > 0:
-
         highScoreRowIndex = np.argmax(scores)
-
         highScore = scores[highScoreRowIndex]
         highScoreName = names[highScoreRowIndex]
         highScoreTime = times[highScoreRowIndex]
